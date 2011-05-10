@@ -5,7 +5,7 @@ A Cucumber formatter which generates an HTML website to browse your scenarios an
 == Pre-requisites
 
 * Rails 3
-* Cucumber (0.8.5 to 0.9.4 - it does not work with cucumber 0.10.0 yet)
+* Cucumber (0.8.5 to 0.9.4 - viewcumber is not compatible with cucumber 0.10.0 yet)
 * Capybara
 
 == Installation
@@ -37,6 +37,10 @@ Then open ./viewcumber/index.html in Firefox/Safari. It does not work in Chrome.
 * Commit, do not mess with rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
+
+== License
+
+MIT
 
 == Copyright
 
