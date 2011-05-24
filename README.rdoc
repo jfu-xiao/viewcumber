@@ -26,7 +26,7 @@ Then open ./viewcumber/index.html in Firefox/Safari. It does not work in Chrome.
 
 == Screenshots
 
-![Screenshot](http://github.com/versapay/viewcumber/raw/master/screenshot.png)
+http://github.com/versapay/viewcumber/raw/master/screenshot.png
 
 == Note on Patches/Pull Requests
 
