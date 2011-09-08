@@ -11,6 +11,8 @@ if respond_to? :AfterStep
       if !@email.blank?
         Viewcumber.last_step_html = Viewcumber.rewrite_css_and_image_references(@email)
         @email = nil
+      elsif Capybara.page.driver.respond_to? :source
+        Viewcumber.last_step_html = Viewcumber.rewrite_css_and_image_references(Capybara.page.driver.source.to_s)
       elsif Capybara.page.driver.respond_to? :html
         Viewcumber.last_step_html = Viewcumber.rewrite_css_and_image_references(Capybara.page.driver.html.to_s)
       end
@@ -61,7 +63,7 @@ class Viewcumber < Cucumber::Formatter::Json
     def rewrite_css_and_image_references(response_html) # :nodoc:
       return response_html unless Capybara.asset_root
       directories = Dir.new(Capybara.asset_root).entries.inject([]) do |list, name|
-        list << name if File.directory?(name) and not name.to_s =~ /^\./
+        list << name if File.directory?(File.join(Capybara.asset_root, name)) and not name.to_s =~ /^\./
         list
       end
       response_html.gsub!(/("|')\/(#{directories.join('|')})/, '\1public/\2')
