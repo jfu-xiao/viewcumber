@@ -43,8 +43,10 @@ class Viewcumber < Cucumber::Formatter::Json
     # The JSON formatter adds the background as a feature element,
     # we only want full scenarios so lets delete all with type 'background'
     def after_feature(feature)
-      @gf.gherkin_object['elements'].delete_if do |element|
-        element['type'] == 'background'
+      if @gf.gherkin_object['elements']
+        @gf.gherkin_object['elements'].delete_if do |element|
+          element['type'] == 'background'
+        end
       end
       super(feature)
     end
