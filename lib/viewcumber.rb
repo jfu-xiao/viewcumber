@@ -22,6 +22,12 @@ if respond_to? :AfterStep
 end
 
 class Viewcumber < Cucumber::Formatter::Json
+  module GherkinObjectHack
+    def gherkin_object
+      @feature_hash
+    end
+  end
+
   module Cucumber09
     def after_step(step)
       @current_step[:html_file] = write_html_to_file(Viewcumber.last_step_html)
@@ -32,6 +38,8 @@ class Viewcumber < Cucumber::Formatter::Json
 
   module Cucumber010
     def after_step(step)
+      @gf.extend GherkinObjectHack unless @gf.respond_to? :gherkin_object
+
       additional_step_info = { 'html_file' => write_html_to_file(Viewcumber.last_step_html), 
                                'emails' => emails_for_step(step) }
 
@@ -43,7 +51,9 @@ class Viewcumber < Cucumber::Formatter::Json
     # The JSON formatter adds the background as a feature element,
     # we only want full scenarios so lets delete all with type 'background'
     def after_feature(feature)
-      if @gf.gherkin_object['elements']
+      @gf.extend GherkinObjectHack unless @gf.respond_to? :gherkin_object
+
+      if @gf.gherkin_object && @gf.gherkin_object['elements']
         @gf.gherkin_object['elements'].delete_if do |element|
           element['type'] == 'background'
         end
@@ -70,7 +80,7 @@ class Viewcumber < Cucumber::Formatter::Json
       end
       response_html.gsub!(/("|')\/(#{directories.join('|')})/, '\1public/\2')
       response_html.gsub(/("|')http:\/\/.*\/images/, '\1public/images') 
-    end    
+    end
   end
 
   def initialize(step_mother, path_or_io, options)
