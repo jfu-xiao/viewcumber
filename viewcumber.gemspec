@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "viewcumber"
-  s.version = "0.2.2"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Greg Bell", "Philippe Creux", "Samuel Reh"]
-  s.date = "2011-12-01"
+  s.authors = ["gregbell", "pcreux", "samuelreh"]
+  s.date = "2012-02-08"
   s.executables = ["viewcumber"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -1789,24 +1789,26 @@ Gem::Specification.new do |s|
   ]
   s.homepage = "http://github.com/versapay/viewcumber"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.11"
+  s.rubygems_version = "1.8.15"
   s.summary = "Cucumber formatter for easily viewing each step of your scenarios"
-  s.test_files = [
-    "test/helper.rb",
-    "test/test_viewcumber.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<viewcumber>, [">= 0"])
+      s.add_runtime_dependency(%q<jeweler>, [">= 0"])
       s.add_runtime_dependency(%q<cucumber>, [">= 0.8.5"])
       s.add_runtime_dependency(%q<capybara>, [">= 0.3"])
     else
+      s.add_dependency(%q<viewcumber>, [">= 0"])
+      s.add_dependency(%q<jeweler>, [">= 0"])
       s.add_dependency(%q<cucumber>, [">= 0.8.5"])
       s.add_dependency(%q<capybara>, [">= 0.3"])
     end
   else
+    s.add_dependency(%q<viewcumber>, [">= 0"])
+    s.add_dependency(%q<jeweler>, [">= 0"])
     s.add_dependency(%q<cucumber>, [">= 0.8.5"])
     s.add_dependency(%q<capybara>, [">= 0.3"])
   end
