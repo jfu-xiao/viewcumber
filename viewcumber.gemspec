@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gregbell", "pcreux", "samuelreh"]
-  s.date = "2012-02-08"
+  s.date = "2012-02-09"
   s.executables = ["viewcumber"]
   s.extra_rdoc_files = [
     "LICENSE",
@@ -1798,18 +1798,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<viewcumber>, [">= 0"])
       s.add_runtime_dependency(%q<jeweler>, [">= 0"])
-      s.add_runtime_dependency(%q<cucumber>, [">= 0.8.5"])
+      s.add_runtime_dependency(%q<cucumber>, [">= 1.1.4"])
       s.add_runtime_dependency(%q<capybara>, [">= 0.3"])
     else
       s.add_dependency(%q<viewcumber>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
-      s.add_dependency(%q<cucumber>, [">= 0.8.5"])
+      s.add_dependency(%q<cucumber>, [">= 1.1.4"])
       s.add_dependency(%q<capybara>, [">= 0.3"])
     end
   else
     s.add_dependency(%q<viewcumber>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])
-    s.add_dependency(%q<cucumber>, [">= 0.8.5"])
+    s.add_dependency(%q<cucumber>, [">= 1.1.4"])
     s.add_dependency(%q<capybara>, [">= 0.3"])
   end
 end

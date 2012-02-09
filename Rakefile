@@ -10,7 +10,7 @@ begin
     gem.authors = ["gregbell", "pcreux", "samuelreh"]
     gem.default_executable  = "viewcumber"
     gem.executables         = ["viewcumber"]
-    gem.add_dependency "cucumber", ">= 0.8.5"
+    gem.add_dependency "cucumber", ">= 1.1.4"
     gem.add_dependency "capybara", ">= 0.3"
   end
   Jeweler::GemcutterTasks.new
