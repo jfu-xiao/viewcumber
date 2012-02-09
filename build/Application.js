@@ -36001,8 +36001,8 @@ return objj_msgSend(_scenarios,"count");
 class_addMethods(_373e,[new objj_method(sel_getUid("featureFilesFromCucumberJSON:"),function(_374b,_374c,_374d){
 with(_374b){
 var _374e=objj_msgSend(CPArray,"arrayWithArray:",[]);
-for(var i=0;i<_374d.features.length;i++){
-objj_msgSend(_374e,"addObject:",objj_msgSend(FeatureFile,"featureFileFromCucumberJSON:",_374d.features[i]));
+for(var i=0;i<_374d.features;i++){
+objj_msgSend(_374e,"addObject:",objj_msgSend(FeatureFile,"featureFileFromCucumberJSON:",_374d[i]));
 }
 return _374e;
 }
