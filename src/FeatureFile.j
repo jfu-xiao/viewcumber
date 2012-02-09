@@ -18,8 +18,8 @@
 {
   var files = [CPArray arrayWithArray:[]];
 
-  for(var i = 0; i < json.features.length; i++) {
-    [files addObject:[FeatureFile featureFileFromCucumberJSON:json.features[i]]];
+  for(var i = 0; i < json.length; i++) {
+    [files addObject:[FeatureFile featureFileFromCucumberJSON:json[i]]];
   }
 
   return files;

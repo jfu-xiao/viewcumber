@@ -22,51 +22,15 @@ if respond_to? :AfterStep
 end
 
 class Viewcumber < Cucumber::Formatter::Json
-  module GherkinObjectHack
-    def gherkin_object
+
+  module GherkinObjectAttrs
+    def feature_hash
       @feature_hash
     end
-  end
 
-  module Cucumber09
-    def after_step(step)
-      @current_step[:html_file] = write_html_to_file(Viewcumber.last_step_html)
-      @current_step[:emails] = emails_for_step(step)
-      super
+    def feature_hashes
+      @feature_hashes
     end
-  end
-
-  module Cucumber010
-    def after_step(step)
-      @gf.extend GherkinObjectHack unless @gf.respond_to? :gherkin_object
-
-      additional_step_info = { 'html_file' => write_html_to_file(Viewcumber.last_step_html), 
-                               'emails' => emails_for_step(step) }
-
-      current_element = @gf.gherkin_object['elements'].last
-      current_step = current_element['steps'].last
-      current_step.merge!(additional_step_info)
-    end
-
-    # The JSON formatter adds the background as a feature element,
-    # we only want full scenarios so lets delete all with type 'background'
-    def after_feature(feature)
-      @gf.extend GherkinObjectHack unless @gf.respond_to? :gherkin_object
-
-      if @gf.gherkin_object && @gf.gherkin_object['elements']
-        @gf.gherkin_object['elements'].delete_if do |element|
-          element['type'] == 'background'
-        end
-      end
-      super(feature)
-    end
-  end
-
-  cucumber_version = Gem.loaded_specs["cucumber"].version
-  if cucumber_version < Gem::Version.new('0.10.0')
-    include Cucumber09
-  else
-    include Cucumber010
   end
 
   class << self
@@ -88,7 +52,33 @@ class Viewcumber < Cucumber::Formatter::Json
     copy_app
     copy_public_folder
     super(step_mother, File.open(results_filename, 'w+'), options)
+    puts 'extending gf'
+    @gf.extend GherkinObjectAttrs
   end
+
+  def after_step(step)
+
+    additional_step_info = { 'html_file' => write_html_to_file(Viewcumber.last_step_html), 
+                             'emails' => emails_for_step(step) }
+
+    current_element = @gf.feature_hash['elements'].last
+    current_step = current_element['steps'].last
+    current_step.merge!(additional_step_info)
+  end
+
+  # The JSON formatter adds the background as a feature element,
+  # we only want full scenarios so lets delete all with type 'background'
+  def after_feature(feature)
+    # this might want to be feature_hashes and an each
+    if @gf.feature_hash && @gf.feature_hash['elements']
+      @gf.feature_hash['elements'].delete_if do |element|
+        element['type'] == 'background'
+      end
+    end
+    super(feature)
+  end
+
+
 
 
   private
