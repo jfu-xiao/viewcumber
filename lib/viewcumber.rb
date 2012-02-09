@@ -52,7 +52,6 @@ class Viewcumber < Cucumber::Formatter::Json
     copy_app
     copy_public_folder
     super(step_mother, File.open(results_filename, 'w+'), options)
-    puts 'extending gf'
     @gf.extend GherkinObjectAttrs
   end
 
