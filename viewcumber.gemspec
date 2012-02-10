@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "viewcumber"
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["gregbell", "pcreux", "samuelreh"]
-  s.date = "2012-02-09"
+  s.date = "2012-02-10"
   s.executables = ["viewcumber"]
   s.extra_rdoc_files = [
     "LICENSE",
