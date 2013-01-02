@@ -10,8 +10,6 @@ begin
     gem.authors = ["gregbell", "pcreux", "samuelreh"]
     gem.default_executable  = "viewcumber"
     gem.executables         = ["viewcumber"]
-    gem.add_dependency "cucumber", ">= 1.1.4"
-    gem.add_dependency "capybara", ">= 0.3"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
@@ -42,7 +40,7 @@ task :test => :check_dependencies
 
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
