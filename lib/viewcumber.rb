@@ -175,7 +175,7 @@ class Viewcumber < Cucumber::Formatter::Json
   end
 
   def copy_public_folder
-    FileUtils.cp_r File.join(Rails.root, "public"), File.join(results_dir, "public")
+    #FileUtils.cp_r File.join(Rails.root, "public"), File.join(results_dir, "public")
   end
 
 end
