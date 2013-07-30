@@ -103,7 +103,7 @@ class Viewcumber < Cucumber::Formatter::Json
   end
 
   def emails_for_step(step)
-    ActionMailer::Base.deliveries.collect{|mail| mail_as_json(mail) }
+    [] #ActionMailer::Base.deliveries.collect{|mail| mail_as_json(mail) }
   end
 
   def mail_as_json(mail)
